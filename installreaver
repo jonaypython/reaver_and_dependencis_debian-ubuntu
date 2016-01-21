@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+import os
+import getpass
+import urllib.request
+
+print("""
+ _           _        _ _                                 
+(_)_ __  ___| |_ __ _| | |  _ __ ___  __ ___   _____ _ __ 
+| | '_ \/ __| __/ _` | | | | '__/ _ \/ _` \ \ / / _ \ '__|
+| | | | \__ \ || (_| | | | | | |  __/ (_| |\ V /  __/ |   
+|_|_| |_|___/\__\__,_|_|_| |_|  \___|\__,_| \_/ \___|_|   
+                                                        
+by:https://www.facebook.com/archdesktop""")
+
+usuario = getpass.getuser()
+
+def install():
+    directorio = os.chdir("/tmp/")
+    downloading = urllib.request.urlretrieve("http://reaver-wps.googlecode.com/files/reaver-1.4.tar.gz" , "reaver-1.4.tar.gz")
+    descomprimir = os.system("tar -xzvf reaver-1.4.tar.gz")
+    dependencias = os.system("apt-get -y install libpcap-dev sqlite3 libsqlite3-dev libpcap0.8-dev")
+    ruta = os.chdir("/tmp/reaver-1.4/src/")
+    compilar = os.system("./configure ; make  ; make install")
+    print("""
+  __ _       _     _     
+ / _(_)_ __ (_)___| |__  
+| |_| | '_ \| / __| '_ \ 
+|  _| | | | | \__ \ | | |
+|_| |_|_| |_|_|___/_| |_|
+    """)
+
+
+
+
+if usuario == "root":
+    install()
+
+else:
+    print("you run script root")
